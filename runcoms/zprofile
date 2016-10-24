@@ -1,4 +1,3 @@
-#!/usr/bin/env zsh
 # Executes commands at login pre-zshrc.
 
 #
@@ -29,6 +28,8 @@ fi
 # Paths
 #
 
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
 $HOME/.rbenv/shims
@@ -84,7 +85,8 @@ fi
 #
 
 if [[ ! -d "$TMPDIR" ]]; then
-  export TMPDIR="$(mktemp -d)"
+  export TMPDIR="/tmp/$LOGNAME"
+  mkdir -p -m 700 "$TMPDIR"
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
