@@ -47,6 +47,9 @@ path=(
   $path
 )
 
+# Set path for Mac Ports
+#export MANPATH=/opt/local/share/man:$MANPATH
+
 #
 # Less
 #
