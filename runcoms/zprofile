@@ -62,6 +62,8 @@ path=(
 
 # Fink initialization
 #. /sw/bin/init.sh
+# Set path for Mac Ports
+#export MANPATH=/opt/local/share/man:$MANPATH
 
 #
 # Less

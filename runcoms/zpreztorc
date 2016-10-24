@@ -31,6 +31,11 @@ zstyle ':prezto:load' pmodule \
       'python' \
       'rsync' \
       'gnu-utility' \
+      'gpg' \
+      'ssh' \
+      'homebrew' \
+      'macports' \
+      'python' \
       'utility' \
       'completion' \
       'terminal' \
@@ -48,7 +53,7 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the query found color.
-# zstyle ':prezto:module:autosuggestions:color' found ''
+ zstyle ':prezto:module:autosuggestions:color' found ''
 
 #
 # Editor
@@ -128,7 +133,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #
 
 # Set the SSH identities to load into the agent.
-# zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa2' 'id_github'
+ zstyle ':prezto:module:ssh:load' identities 'id_rsa_dain' 'id_github'
 
 #
 # Syntax Highlighting
@@ -136,19 +141,25 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'line' \
-#   'cursor' \
-#   'root'
+ zstyle ':prezto:module:syntax-highlighting' highlighters \
+   'main' \
+   'brackets' \
+  'pattern' \
+   'line' \
+   'cursor' \
+   'root'
 #
 # Set syntax highlighting styles.
  zstyle ':prezto:module:syntax-highlighting' styles \
+<<<<<<< HEAD
    'builtin' 'fg=purple' \
    'command' 'fg=green' \
    'function' 'fg=blue'
+=======
+#   'builtin' 'bg=blue' \
+#   'command' 'bg=blue' \
+#   'function' 'bg=blue'
+>>>>>>> 6a5a8af... standard and functional
 
 #
 # Terminal
