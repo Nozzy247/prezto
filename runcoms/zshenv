@@ -4,8 +4,20 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
+export HOMEBREW_GITHUB_API_TOKEN=a00425e10b96195220998287b9cede51a890aa14
+export HOMEBREW_NO_ANALYTICS=1
+setopt extended_glob
+alias locate=glocate --database
+export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+if [[ ! -d "$TMPDIR" ]]; then
+  export TMPDIR="/tmp/$LOGNAME"
+  mkdir -p -m 700 "$TMPDIR"
+fi
+
+export PATH=~/local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:~/.fzf/bin:~/bin
