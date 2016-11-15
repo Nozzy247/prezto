@@ -19,11 +19,8 @@ eval "$(rbenv init -)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 fpath=(
-/usr/local/share/zsh/site-functions
-$fpath
-/usr/local/Homebrew/completions
-"$fpath[@]"
-/usr/local/var/homebrew/linked/zsh/share/zsh/functions
+  /usr/local/share/zsh-completions
+  "$fpath[@]"
 )
 
 # gulp
@@ -127,4 +124,3 @@ if [[ -o login ]]; then
 fi
 unset zshrc_end
 unset zshrc_start
-export PATH=/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:~/.fzf/bin:~/bin
