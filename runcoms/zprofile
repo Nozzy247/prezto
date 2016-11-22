@@ -33,8 +33,12 @@ fi
 # Paths
 #
 
-# Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+# Set the list of directories that Zsh searches for programs.
+path=(
+/usr/local/{bin,sbin}
+$path
+~/.fzf/bin
+)
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -46,6 +50,11 @@ path=(
   /usr/local/{bin,sbin}
   $path
 )
+
+# Configure to acccess the Zsh help pages
+  unalias run-help
+  autoload run-help
+  HELPDIR=/usr/local/share/zsh/help
 
 #
 # Less
