@@ -21,3 +21,9 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 export PATH=~/local/bin:/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:~/.fzf/bin:~/bin
+
+# Set the list of directories that Zsh searches for programs.
+path=(
+/usr/local/{bin,sbin}
+$path
+)

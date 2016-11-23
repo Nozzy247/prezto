@@ -7,5 +7,20 @@ fi
 # Customize to your needs...
 \
 
+# Completions
+
+# F path to completion functions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-fpath=(/usr/local/share/zsh-completions $fpath)
+fpath=(
+/usr/local/share/zsh-completions
+$fpath
+/usr/local/Homebrew/completions/
+/usr/local/var/homebrew/linked/zsh/share/zsh/functions
+/usr/local/Cellar/zsh-completions/0.22.0/share/zsh-completions
+)
+
+# gulp
+eval "$(gulp --completion=zsh)"
+
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
