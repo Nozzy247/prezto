@@ -34,18 +34,18 @@ zstyle ':prezto:load' pmodule \
       'homebrew' \
       'python' \
       'rsync' \
+      'gnu-utility' \
       'utility' \
       'completion' \
       'terminal' \
       'node' \
+      'zsh-nvm' \
       'utility' \
       'git' \
       'archive' \
       'syntax-highlighting' \
       'history-substring-search' \
       'prompt'
-
-zstyle ':prezto:module:prompt' theme 'paradox'
 
 #
 # Autosuggestions
