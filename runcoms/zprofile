@@ -33,7 +33,6 @@ path=(
 $HOME/bin
 /usr/local/{bin,sbin}
 $path
-~/.fzf/bin
 )
 # Set the list of directories that Zsh searches for programs.
 path=(
