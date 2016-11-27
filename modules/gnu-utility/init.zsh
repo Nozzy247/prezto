@@ -15,11 +15,11 @@ fi
 
 _gnu_utility_cmds=(
   # Coreutils
-  '[' 'base64' 'basename' 'cat' 'chcon' 'chgrp' 'chmod' 'chown'
+  '[' 'base64' 'basename' 'cat' 'chcon' 'chgrp'
   'chroot' 'cksum' 'comm' 'cp' 'csplit' 'cut' 'date' 'dd' 'df'
   'dir' 'dircolors' 'dirname' 'du' 'echo' 'env' 'expand' 'expr'
   'factor' 'false' 'fmt' 'fold' 'groups' 'head' 'hostid' 'id'
-  'install' 'join' 'kill' 'link' 'ln' 'logname' 'ls' 'md5sum'
+  'install' 'join' 'kill' 'link' 'ln' 'logname' 'md5sum'
   'mkdir' 'mkfifo' 'mknod' 'mktemp' 'mv' 'nice' 'nl' 'nohup' 'nproc'
   'od' 'paste' 'pathchk' 'pinee' 'pr' 'printenv' 'printf' 'ptx'
   'pwd' 'readlink' 'realpath' 'rm' 'rmdir' 'runcon' 'seq' 'sha1sum'
@@ -28,6 +28,7 @@ _gnu_utility_cmds=(
   'tee' 'test' 'timeout' 'touch' 'tr' 'true' 'truncate' 'tsort'
   'tty' 'uname' 'unexpand' 'uniq' 'unlink' 'uptime' 'users' 'vdir'
   'wc' 'who' 'whoami' 'yes'
+  # Removed: 'chmod' 'chown' 'ls'
 
   # The following utilities are not part of Coreutils but installed separately.
 
