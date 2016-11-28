@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Executes commands at the start of an interactive session.
 gdate "+s%N"
 zmodload zsh/zprof
@@ -15,9 +16,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-(??)# Customize to your needs...
-
-(??)# Completions
 
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -54,25 +52,9 @@ zmodload -F zsh/stat b:zstat
 source ~/.iterm2_shell_integration.zsh
 
 # Node version manager
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+export NVM_LAZY_LOAD=true
+source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" != "N/A" ] && [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm install
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 gdate "+s%N"
 
 # # Node version manager
