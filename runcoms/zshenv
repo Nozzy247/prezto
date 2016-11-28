@@ -1,4 +1,4 @@
-#
+#!/bin/zsh
 # Defines environment variables.
 #
 # Authors:
@@ -24,6 +24,8 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-/usr/local/{bin,sbin}
+/usr/{local/,}{bin,sbin}
+/bin
+/sw/bin
 $path
 )
