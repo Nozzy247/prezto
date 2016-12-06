@@ -35,8 +35,10 @@ fi
 
 # Set the list of directories that Zsh searches for programs.
 path=(
+$HOME/.rbenv/bin
 $HOME/bin
 /usr/local/{bin,sbin}
+/usr/libexec
 $path
 )
 # ~/.fzf/bin
@@ -55,7 +57,7 @@ $path
   HELPDIR=/usr/local/share/zsh/help
 
 # Fink initialization
-. /sw/bin/init.sh
+#. /sw/bin/init.sh
 
 #
 # Less

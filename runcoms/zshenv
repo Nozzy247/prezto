@@ -9,6 +9,8 @@ export HOMEBREW_GITHUB_API_TOKEN=a00425e10b96195220998287b9cede51a890aa14
 export HOMEBREW_NO_ANALYTICS=1
 setopt extended_glob
 export NODE_TLS_REJECT_UNAUTHORIZED=0
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS=--require-sha
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
@@ -26,6 +28,6 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 path=(
 /usr/{local/,}{bin,sbin}
 /bin
-/sw/bin
-$path
 )
+#/Users/ryan/.zprezto/modules/**/*(/)
+#)

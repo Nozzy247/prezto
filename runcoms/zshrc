@@ -4,11 +4,11 @@
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
-gdate "+s%N"
 zmodload zsh/zprof
+local zshrc_start=$(gdate +%s%N)
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 # Source Prezto.
 if [[ -s "/Users/ryan/.zprezto/init.zsh" ]]; then
@@ -16,6 +16,9 @@ if [[ -s "/Users/ryan/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs..
+
+# Init rbenv
+eval "$(rbenv init -)"
 
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -40,8 +43,15 @@ alias ls='ls -G'
 # iTerm2 shell integration hooks
 source "/Users/ryan/.iterm2_shell_integration.zsh"
 
-# Node version manager
-export NVM_LAZY_LOAD=true
-source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
+# # Node version manager
+# export NVM_LAZY_LOAD=true
+# source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
 
-gdate "+s%N"
+local zshrc_end=$(gdate +%s%N)
+function calc () {
+	bc -l <<< "$@"
+}
+
+print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
+unset zshrc_end
+unset zshrc_start
