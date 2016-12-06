@@ -1,4 +1,9 @@
 #!/usr/local/bin/zsh
+zmodload zsh/zprof
+local zshrc_start=$(gdate +%s%N)
+
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -6,6 +11,11 @@ fi
 
 # Customize to your needs...
 
+# Init rbenv
+eval "$(rbenv init -)"
+
+# Fuzzy Completions
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # F path to completion functions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -50,3 +60,16 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 gdate "+s%N"
+
+# # Node version manager
+# export NVM_LAZY_LOAD=true
+# source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
+
+local zshrc_end=$(gdate +%s%N)
+function calc () {
+	bc -l <<< "$@"
+}
+
+print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
+unset zshrc_end
+unset zshrc_start
