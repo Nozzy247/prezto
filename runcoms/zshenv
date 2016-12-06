@@ -27,11 +27,4 @@ path=(
 /usr/local/opt/openssl/bin
 /usr/{local/,}{bin,sbin}
 /bin
-"$path[@]"
-)
-
-# Set the list of directories that Zsh searches for programs.
-path=(
-/usr/local/{bin,sbin}
-$path
 )

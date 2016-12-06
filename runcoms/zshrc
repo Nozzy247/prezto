@@ -1,10 +1,10 @@
 #!/bin/zsh
 # Executes commands at the start of an interactive session.
-gdate "+s%N"
 zmodload zsh/zprof
+local zshrc_start=$(gdate +%s%N)
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
 zmodload zsh/zprof
 local zshrc_start=$(gdate +%s%N)
@@ -16,6 +16,9 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+
+# Init rbenv
+eval "$(rbenv init -)"
 
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -50,12 +53,6 @@ zmodload -F zsh/stat b:zstat
 
 # iTerm2 shell integration hooks
 source ~/.iterm2_shell_integration.zsh
-
-# Node version manager
-export NVM_LAZY_LOAD=true
-source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
-
-gdate "+s%N"
 
 # # Node version manager
  export NVM_LAZY_LOAD=true
