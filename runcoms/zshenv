@@ -10,7 +10,7 @@ export HOMEBREW_NO_ANALYTICS=1
 setopt extended_glob
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 export HOMEBREW_NO_INSECURE_REDIRECT=1
-export HOMEBREW_CASK_OPTS=--require-sha
+# export HOMEBREW_CASK_OPTS=--require-sha
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
