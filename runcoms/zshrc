@@ -62,8 +62,8 @@ load-nvmrc
 gdate "+s%N"
 
 # # Node version manager
-# export NVM_LAZY_LOAD=true
-# source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
+ export NVM_LAZY_LOAD=true
+ source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
 
 local zshrc_end=$(gdate +%s%N)
 function calc () {
