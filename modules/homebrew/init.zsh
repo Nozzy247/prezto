@@ -1,9 +1,5 @@
 #
 # Defines Homebrew aliases.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 # Return if requirements are not found.
 if [[ "$OSTYPE" != (darwin|linux)* ]]; then
@@ -21,8 +17,11 @@ alias brewi='brew install'
 alias brewI='brew info'
 alias brewl='brew list'
 alias brews='brew search'
-alias brewu='brew update && brew upgrade'
+alias brewu='brew update'
+alias brewU='brew upgrade'
+alias brewo='brew outdated'
 alias brewx='brew remove'
+alias brewh='brew home'
 
 # Homebrew Cask
 alias cask='brew cask'
@@ -33,3 +32,4 @@ alias caskI='brew cask info'
 alias caskl='brew cask list'
 alias casks='brew cask search'
 alias caskx='brew cask uninstall'
+alias caskh='brew cask home'
