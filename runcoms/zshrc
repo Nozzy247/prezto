@@ -1,9 +1,6 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+
 zmodload zsh/zprof
 local zshrc_start=$(gdate +%s%N)
 
@@ -15,8 +12,6 @@ if [[ -s "/Users/ryan/.zprezto/init.zsh" ]]; then
   source "/Users/ryan/.zprezto/init.zsh"
 fi
 
-# Customize to your needs..
-
 # Init rbenv
 eval "$(rbenv init -)"
 
@@ -25,11 +20,9 @@ eval "$(rbenv init -)"
 
 # F path to completion functions
 fpath=(
-/usr/local/share/zsh-completions
 /usr/local/share/zsh/site-functions
 $fpath
 /usr/local/var/homebrew/linked/zsh/share/zsh/functions
-/usr/local/Cellar/zsh-completions/0.22.0/share/zsh-completions
 )
 
 # gulp
@@ -38,7 +31,7 @@ eval "$(gulp --completion=zsh)"
 # Personalizations
 alias rhelp=run-help
 alias gi='grep -i'
-alias ls='ls -G'
+export CLICOLOR=xterm-color
 
 # iTerm2 shell integration hooks
 source "/Users/ryan/.iterm2_shell_integration.zsh"

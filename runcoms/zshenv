@@ -1,8 +1,5 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # Defines environment variables.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
 export HOMEBREW_GITHUB_API_TOKEN=a00425e10b96195220998287b9cede51a890aa14
@@ -28,6 +25,7 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 path=(
 /usr/{local/,}{bin,sbin}
 /bin
+$path
 )
 #/Users/ryan/.zprezto/modules/**/*(/)
 #)
