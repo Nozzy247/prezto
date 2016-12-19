@@ -10,7 +10,7 @@
 #
 
 # Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath path
+typeset -gU cdpath fpath path mailpath
 
 # Check for the minimum supported version.
 min_zsh_version='4.3.17'
