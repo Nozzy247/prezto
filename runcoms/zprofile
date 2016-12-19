@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # Executes commands at login pre-zshrc.
 
 #
@@ -31,7 +31,7 @@ fi
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-$HOME/.rbenv/bin
+~/.rbenv/versions/$(rbenv version-name)/bin
 $HOME/bin
 /usr/local/{bin,sbin}
 /usr/libexec

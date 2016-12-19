@@ -27,4 +27,5 @@ path=(
 /usr/local/opt/openssl/bin
 /usr/{local/,}{bin,sbin}
 /bin
+$path
 )
