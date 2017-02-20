@@ -51,6 +51,9 @@ brewI2C() {
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
 
+# zmodload for modules with parameters
+zmodload -F zsh/stat b:zstat
+
 # iTerm2 shell integration hooks
 source ~/.iterm2_shell_integration.zsh
 
