@@ -35,6 +35,9 @@ alias rhelp=run-help
 alias gi='grep -i'
 export CLICOLOR=xterm-color
 
+# zmodload for modules with parameters
+zmodload -F zsh/stat b:zstat
+
 # iTerm2 shell integration hooks
 source ~/.iterm2_shell_integration.zsh
 
@@ -69,6 +72,15 @@ function calc () {
 	bc -l <<< "$@"
 }
 
-print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
+# Lunchy completion integration
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+  if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+    . $LUNCHY_DIR/lunchy-completion.zsh
+  fi
+
+if [[ -o login ]]; then
+  print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
+fi
+
 unset zshrc_end
 unset zshrc_start
