@@ -124,7 +124,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #
 
 # Set the SSH identities to load into the agent.
- zstyle ':prezto:module:ssh:load' identities 'id_rsa_dain' 'id_github'
+# zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_github'
 
 #
 # Syntax Highlighting
@@ -170,7 +170,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+ zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 
 
 #
@@ -182,7 +182,8 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #
 #
 #   - `BANG_HIST` treats the **!** character specially during expansion.
-#   - `EXTENDED_HISTORY` writes the history file in the *:start:elapsed;command* format.
+setopt EXTENDED_HISTORY #  - `EXTENDED_HISTORY` writes the history file in the *:start:elapsed;command* format.
+
 #   - `INC_APPEND_HISTORY` writes to the history file immediately, not when the shell exits.
 #   - `SHARE_HISTORY` shares history between all sessions.
 #   - `HIST_EXPIRE_DUPS_FIRST` expires a duplicate event first when trimming history.

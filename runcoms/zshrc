@@ -36,9 +36,6 @@ export CLICOLOR=xterm-color
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
 
-# iTerm2 shell integration hooks
-source "/Users/ryan/.iterm2_shell_integration.zsh"
-
 # # Node version manager
  export NVM_LAZY_LOAD=true
  source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
