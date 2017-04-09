@@ -2,10 +2,14 @@
 # Defines environment variables.
 #
 
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath path mailpath
+
 export HOMEBREW_NO_ANALYTICS=1
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 source "$HOME/.config/shell_tokens"
+setopt extended_glob
 setopt extended_glob
 # export HOMEBREW_CASK_OPTS=--require-sha
 
@@ -27,5 +31,5 @@ path=(
 /usr/local/opt/openssl/bin
 /usr/{local/,}{bin,sbin}
 /bin
-$path
+"$path[@]"
 )
