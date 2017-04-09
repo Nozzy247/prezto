@@ -17,9 +17,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Init rbenv
-eval "$(rbenv init -)"
-
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -75,6 +72,8 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
+alias pip-upgrade-all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+alias pip3-upgrade-all='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 # pip zsh completion end
 
 # Lunchy completion integration
@@ -108,5 +107,12 @@ function calc () {
 if [[ -o login ]]; then
   print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
 fi
+
+# Init rbenv
+eval "$(rbenv init -)"
+
 unset zshrc_end
 unset zshrc_start
+
+# added by travis gem
+[ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
