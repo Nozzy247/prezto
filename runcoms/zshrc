@@ -12,9 +12,6 @@ if [[ -s "/Users/ryan/.zprezto/init.zsh" ]]; then
   source "/Users/ryan/.zprezto/init.zsh"
 fi
 
-# Init rbenv
-eval "$(rbenv init -)"
-
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -32,6 +29,11 @@ eval "$(gulp --completion=zsh)"
 alias rhelp=run-help
 alias gi='grep -i'
 export CLICOLOR=xterm-color
+alias yt=youtube-dl
+alias yta='youtube-dl -f bestaudio --audio-quality 0 --audio-format mp3'
+alias ytv='youtube-dl --ignore-config --output=/Volumes/attic/YouTube\ Video\ Library'
+alias ytp='youtube-dl --ignore-config --output=/Volumes/attic/electronics'
+alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
 
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
@@ -48,6 +50,20 @@ function calc () {
 # perl : By default non-brewed cpan modules are installed to the Cellar. If you wish for your modules to persist across updates we recommend using `local::lib`.
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+alias pip-upgrade-all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+alias pip3-upgrade-all='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
+# pip zsh completion end
+
 # Lunchy completion integration
 LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
   if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
@@ -58,5 +74,12 @@ if [[ -o login ]]; then
   print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
 fi
 
+
+# Init rbenv
+eval "$(rbenv init -)"
+
 unset zshrc_end
 unset zshrc_start
+
+# added by travis gem
+[ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
