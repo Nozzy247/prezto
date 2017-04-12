@@ -28,7 +28,6 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 # Set the list of directories that Zsh searches for programs.
 path=(
 "$HOME/bin"
-"$HOME/.gem/ruby/2.0.0/bin"
 /usr/local/opt/openssl/bin
 /usr/{local/,}{bin,sbin}
 /bin

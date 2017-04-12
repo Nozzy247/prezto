@@ -31,10 +31,16 @@ alias gi='grep -i'
 export CLICOLOR=xterm-color
 export PIP_FORMAT=columns
 alias yt=youtube-dl
-alias yta='youtube-dl -f bestaudio --audio-quality 0 --audio-format mp3'
-alias ytv='youtube-dl --output=/Volumes/attic/YouTube\ Video\ Library'
-alias ytp='youtube-dl -f --output=/Volumes/attic/electronics'
+alias yta='youtube-dl -x --audio-format best --audio-quality 0'
+alias ytv='youtube-dl --output /Volumes/attic/YouTube\ Video\ Library/%(title)s.%(etc)s'
+alias ytp='youtube-dl --output /Volumes/attic/electronics/%(title)s.%(etc)s'
 alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
+brewO() {brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")'}
+brewI2C() {
+  local installed=(${(Fo)$(brewO "$1")#*with-})
+  local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
+  /usr/bin/diff =(print -l -- $installed) =(print -l -- $current)
+}
 
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
@@ -44,7 +50,7 @@ zmodload -F zsh/stat b:zstat
  source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
 
 # perl : By default non-brewed cpan modules are installed to the Cellar. If you wish for your modules to persist across updates we recommend using `local::lib`.
-PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+# PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 
 # pip zsh completion start
