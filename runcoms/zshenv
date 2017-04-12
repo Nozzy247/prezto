@@ -5,7 +5,7 @@
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath path mailpath
 
-export HOMEBREW_GITHUB_API_TOKEN=a00425e10b96195220998287b9cede51a890aa14
+export HOMEBREW_GITHUB_API_TOKEN=61379d58cfe3f54c1a77f78ef127be95941f2fe1
 export HOMEBREW_NO_ANALYTICS=1
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 export HOMEBREW_NO_INSECURE_REDIRECT=1
@@ -28,7 +28,6 @@ export TMPPREFIX="${TMPDIR%/}/zsh"
 # Set the list of directories that Zsh searches for programs.
 path=(
 "$HOME/bin"
-"$HOME/.gem/ruby/2.0.0/bin"
 /usr/local/opt/openssl/bin
 /usr/{local/,}{bin,sbin}
 /bin
