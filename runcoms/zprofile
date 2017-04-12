@@ -31,17 +31,9 @@ fi
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-"$HOME/.rbenv/versions/$(rbenv version-name)/bin"
 "$HOME/perl5/bin"
-/usr/local/{bin,sbin}
-/usr/libexec
-"$path[@]"
-)
-# Set the list of directories that Zsh searches for programs.
-path=(
-$HOME/.rbenv/shims
-$HOME/bin
-"$HOME/perl5/bin"
+"$HOME/.rbenv/bin"
+
 /usr/local/{bin,sbin}
 /usr/libexec
 "$path[@]"
@@ -73,9 +65,6 @@ $HOME/bin
 
 # Fink initialization
 #. /sw/bin/init.sh
-
-# iTerm2 shell integration hooks
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 #
 # Less
