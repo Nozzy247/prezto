@@ -12,8 +12,7 @@
 zstyle ':prezto:*:*' color 'yes'
 
 # Set the Zsh modules to load (man zshmodules).
- zstyle ':prezto:load' zmodule 'attr' 'computil' 'complete' 'zprof' 'zutil' 'mapfile'
-
+ zstyle ':prezto:load' zmodule 'attr' 'stat' 'computil' 'complete' 'zprof' 'zutil' 'mapfile'
 # Set the Zsh functions to load (man zshcontrib).
  zstyle ':prezto:load' zfunction 'zargs' 'zmv'
 
@@ -47,7 +46,7 @@ zstyle ':prezto:load' pmodule \
 #
 
 # Set the query found color.
- zstyle ':prezto:module:autosuggestions:color' found ''
+# zstyle ':prezto:module:autosuggestions:color' found ''
 
 #
 # Editor
@@ -64,7 +63,7 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 #
 
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
- #zstyle ':prezto:module:git:status:ignore' submodules 'all'
+# zstyle ':prezto:module:git:status:ignore' submodules 'all'
 
 #
 # GNU Utility
@@ -78,13 +77,13 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 #
 
 # Set the query found color.
- zstyle ':prezto:module:history-substring-search:color' found ''
+# zstyle ':prezto:module:history-substring-search:color' found ''
 
 # Set the query not found color.
- zstyle ':prezto:module:history-substring-search:color' not-found ''
+# zstyle ':prezto:module:history-substring-search:color' not-found ''
 
 # Set the search globbing flags.
- zstyle ':prezto:module:history-substring-search' globbing-flags ''
+# zstyle ':prezto:module:history-substring-search' globbing-flags ''
 
 #
 # Pacman
@@ -132,32 +131,39 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
- zstyle ':prezto:module:syntax-highlighting' highlighters \
-   'main' \
-   'brackets' \
-  'pattern' \
-   'line' \
-   'cursor' \
-   'root'
+# zstyle ':prezto:module:syntax-highlighting' highlighters \
+#   'main' \
+#   'brackets' \
+#   'pattern' \
+#   'line' \
+#   'cursor' \
+#   'root'
 #
 # Set syntax highlighting styles.
- zstyle ':prezto:module:syntax-highlighting' styles \
-   'builtin' 'fg=purple' \
-   'command' 'fg=green' \
-   'function' 'fg=blue'
+# zstyle ':prezto:module:syntax-highlighting' styles \
+#   'builtin' 'bg=blue' \
+#   'command' 'bg=blue' \
+#   'function' 'bg=blue'
+#
+# Set syntax pattern styles.
+# zstyle ':prezto:module:syntax-highlighting' pattern \
+#   'rm*-rf*' 'fg=white,bold,bg=red'
 
 #
 # Terminal
 #
 
 # Auto set the tab and window titles.
- zstyle ':prezto:module:terminal' auto-title 'yes'
+# zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
- zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+# zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # Set the tab title format.
- zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+# zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+
+# Set the terminal multiplexer title format.
+# zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 #
 # Tmux
@@ -169,24 +175,5 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # Auto start a session when Zsh is launched in a SSH connection.
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
-#
-# History
-# Variables
-#   - `HISTFILE` stores the path to the history file.
-#   - `HISTSIZE` stores the maximum number of events to save in the internal history.
-#   - `SAVEHIST` stores the maximum number of events to save in the history file.
-#
-#
-#   - `BANG_HIST` treats the **!** character specially during expansion.
-setopt EXTENDED_HISTORY #  - `EXTENDED_HISTORY` writes the history file in the *:start:elapsed;command* format.
-
-#   - `INC_APPEND_HISTORY` writes to the history file immediately, not when the shell exits.
-#   - `SHARE_HISTORY` shares history between all sessions.
-#   - `HIST_EXPIRE_DUPS_FIRST` expires a duplicate event first when trimming history.
-#   - `HIST_IGNORE_DUPS` does not record an event that was just recorded again.
-#   - `HIST_IGNORE_ALL_DUPS` deletes an old recorded event if a new event is a duplicate.
-#   - `HIST_FIND_NO_DUPS` does not display a previously found event.
-#   - `HIST_IGNORE_SPACE` does not record an event starting with a space.
-#   - `HIST_SAVE_NO_DUPS` does not write a duplicate event to the history file.
-#   - `HIST_VERIFY` does not execute immediately upon history expansion.
-#   - `HIST_BEEP` beeps when accessing non-existent history.
+# Integrate with iTerm2.
+# zstyle ':prezto:module:tmux:iterm' integrate 'yes'

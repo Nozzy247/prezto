@@ -29,10 +29,17 @@ fi
 # Paths
 #
 
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
+
+# Set the the list of directories that cd searches.
+# cdpath=(
+#   $cdpath
+# )
+
 # Set the list of directories that Zsh searches for programs.
 path=(
 "$HOME/perl5/bin"
-"$HOME/.rbenv/bin"
 
 /usr/local/{bin,sbin}
 /usr/libexec
@@ -73,3 +80,13 @@ if (( $#commands[(i)lesspipe(|.sh)] )); then
   export LESSOPEN="| /usr/bin/env $commands[(i)lesspipe(|.sh)] %s 2>&-"
 fi
  lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
+
+#
+# Temporary Files
+#
+
+if [[ ! -d "$TMPDIR" ]]; then
+  export TMPDIR="$(mktemp -d)"
+fi
+
+TMPPREFIX="${TMPDIR%/}/zsh"
