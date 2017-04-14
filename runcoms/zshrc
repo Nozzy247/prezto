@@ -20,9 +20,11 @@ fi
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# F path to completion functions
 fpath=(
-  /usr/local/share/zsh-completions
-  "$fpath[@]"
+/usr/local/share/zsh/site-functions
+"$fpath[@]"
+/usr/local/var/homebrew/linked/zsh/share/zsh/functions
 )
 
 # gulp
@@ -72,6 +74,7 @@ function _pip_completion {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
+
 # pip zsh completion end
 
 # Lunchy completion integration
@@ -80,7 +83,7 @@ LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
     . $LUNCHY_DIR/lunchy-completion.zsh
   fi
 
-alias pip-upgrade-all="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+# alias pip-upgrade-all='for i ($(awk -v ORS=" " 'NR>2 { print $1 }' <(pip list))) pip install -U "$i" &'
 # alias pip-upgrade-all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 alias pip3-upgrade-all='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 
@@ -103,7 +106,7 @@ function calc () {
   bc -l <<< "$@"
 }
 if [[ -o login ]]; then
-  print "~/.zshrc loaded:" $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") "seconds"
+  ZSHRC_LOAD_TIME="~/.zshrc loaded: $(calc "scale=3;($zshrc_end-$zshrc_start)/10^(9)") seconds, IT2 session $TERM_SESSION_ID"
 fi
 
 # Init rbenv
