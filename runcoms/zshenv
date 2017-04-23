@@ -1,8 +1,5 @@
-#
+#!/usr/local/bin/zsh
 # Defines environment variables.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
 export HOMEBREW_GITHUB_API_TOKEN=a00425e10b96195220998287b9cede51a890aa14

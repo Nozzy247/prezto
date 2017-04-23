@@ -1,9 +1,5 @@
-#
+#!/usr/bin/env zsh
 # Sets Prezto options.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
 
 #
 # General
