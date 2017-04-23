@@ -38,8 +38,8 @@ path=(
 $HOME/bin
 /usr/local/{bin,sbin}
 $path
-~/.fzf/bin
 )
+# ~/.fzf/bin
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -81,3 +81,6 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+# Define lessc formula
+ lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }

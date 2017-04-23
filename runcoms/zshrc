@@ -1,20 +1,19 @@
-
+#!/usr/local/bin/zsh
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
-\
 
-# Completions
 
 # F path to completion functions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fpath=(
 /usr/local/share/zsh-completions
+/usr/local/share/zsh/site-functions
 $fpath
-/usr/local/Homebrew/completions/
+/usr/local/Homebrew/completions
 /usr/local/var/homebrew/linked/zsh/share/zsh/functions
 /usr/local/Cellar/zsh-completions/0.22.0/share/zsh-completions
 )
@@ -22,5 +21,32 @@ $fpath
 # gulp
 eval "$(gulp --completion=zsh)"
 
-# Ensure path arrays do not contain duplicates.
-typeset -gU cdpath fpath mailpath path
+# Personalizations
+alias rhelp=run-help
+alias gi='grep -i'
+alias ls='ls -G'
+
+# iTerm2 shell integration hooks
+source ~/.iterm2_shell_integration.zsh
+
+# Node version manager
+# place this after nvm initialization!
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" != "N/A" ] && [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm install
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+gdate "+s%N"
