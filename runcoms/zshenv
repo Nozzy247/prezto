@@ -4,12 +4,9 @@
 
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath path mailpath
-
-export HOMEBREW_GITHUB_API_TOKEN=a00425e10b96195220998287b9cede51a890aa14
+source "$HOME/.config/shell_tokens"
 export HOMEBREW_NO_ANALYTICS=1
-export NODE_TLS_REJECT_UNAUTHORIZED=0
 export HOMEBREW_NO_INSECURE_REDIRECT=1
-export TRAVIS_GIT_TOKEN=be8c34db234f52973e3651495b1fdabf3df21da3
 setopt extended_glob
 # export HOMEBREW_CASK_OPTS=--require-sha
 

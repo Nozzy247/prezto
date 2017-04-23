@@ -13,7 +13,7 @@ fi
 # Editors
 #
 
-export EDITOR='nano'
+export EDITOR='mvim -f'
 export VISUAL='nano'
 export PAGER='less'
 
@@ -40,11 +40,10 @@ typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
 path=(
 "$HOME/perl5/bin"
-
+"$HOME/.rbenv/shims"
 /usr/local/{bin,sbin}
 /usr/libexec
 "$path[@]"
-/Users/ryan/.gem/ruby/2.0.0/bin
 )
 # "$HOME/.rbenv/versions/$(rbenv version-name)/bin"
 # ~/.fzf/bin
