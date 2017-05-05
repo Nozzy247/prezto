@@ -89,3 +89,10 @@ if [[ ! -d "$TMPDIR" ]]; then
 fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
+
+#
+# GnuPG config
+#
+
+# git config
+export GPG_TTY=$(tty)
