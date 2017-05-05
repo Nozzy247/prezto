@@ -90,5 +90,9 @@ fi
 
 TMPPREFIX="${TMPDIR%/}/zsh"
 
-# Define lessc formula
- lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
+#
+# GnuPG config
+#
+
+# git config
+export GPG_TTY=$(tty)
