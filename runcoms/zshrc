@@ -59,7 +59,7 @@ zmodload -F zsh/stat b:zstat
 # iTerm2 shell integration hooks
 source ~/.iterm2_shell_integration.zsh
 
-# # Node version manager
+## Node version manager
  export NVM_LAZY_LOAD=true
  source "$HOME/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
 
@@ -93,6 +93,12 @@ fi
 
 # added by travis gem
 [ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
+
+# Lunchy completion integration
+LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+  if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+    . $LUNCHY_DIR/lunchy-completion.zsh
+  fi
 
 # Lunchy completion integration
 LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras

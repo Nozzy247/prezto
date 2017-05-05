@@ -36,6 +36,7 @@ path=(
 /usr/local/{bin,sbin}
 /usr/libexec
 "$path[@]"
+"$HOME/.gem/ruby/2.0.0/bin"
 )
 # "$HOME/.rbenv/versions/$(rbenv version-name)/bin"
 # ~/.fzf/bin
