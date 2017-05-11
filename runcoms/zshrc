@@ -25,7 +25,7 @@ fpath=(
 # gulp
 # eval "$(gulp --completion=zsh)"
 
-## Personalizations
+# Personalizations
 alias rhelp=run-help
 alias gi='grep -i'
 export CLICOLOR=xterm-color
@@ -51,14 +51,14 @@ brewI2C() {
   local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
   /usr/bin/diff =(print -l -- $installed) =(print -l -- $current)
 }
-# Brew options for the installed package passed as 1st arg
+
 brewO() {brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")'}
 alias pipi="CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib pip install $@"
 
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
 
-## Node version manager
+# # Node version manager
  export NVM_LAZY_LOAD=true
  source "$HOME/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
 
@@ -80,7 +80,7 @@ compctl -K _pip_completion pip
 
 # pip zsh completion end
 
-# alias pip-upgrade-all='for i ($(awk -v ORS=" " 'NR>2 { print $1 }' <(pip list))) pip install -U "$i" &'
+# Lunchy completion integration
 alias pip-upgrade-all="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 alias pip3-upgrade-all="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 
