@@ -36,6 +36,13 @@ alias gi='grep -i'
 export CLICOLOR=xterm-color
 export PIP_FORMAT=columns
 alias getmyip='dig +short myip.opendns.com @resolver1.opendns.com'
+function copy-kill-whole-line {
+  zle kill-whole-line
+  echo -n $CUTBUFFER | pbcopy
+}
+# set working dir to path of top Finder window
+alias fd="$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+alias netports="networksetup -listallhardwareports"
 # youtube-dl
 alias yt=youtube-dl
 alias yta='youtube-dl -x --audio-format best --audio-quality 0'
@@ -49,6 +56,9 @@ brewI2C() {
   local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
   /usr/bin/diff =(print -l -- $installed) =(print -l -- $current)
 }
+# Brew options for the installed package passed as 1st arg
+brewO() {brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")'}
+alias pipi="CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib pip install $@"
 
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
