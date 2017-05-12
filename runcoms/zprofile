@@ -31,10 +31,9 @@ fi
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-$HOME/.rbenv/bin
+$HOME/.rbenv/shims
 $HOME/bin
 "$HOME/perl5/bin"
-"$HOME/.rbenv/bin"
 /usr/local/{bin,sbin}
 /usr/libexec
 "$path[@]"
