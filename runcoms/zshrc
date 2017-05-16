@@ -44,6 +44,7 @@ alias yta='youtube-dl -x --audio-format best --audio-quality 0'
 alias ytv='youtube-dl --output /Volumes/attic/YouTube\ Video\ Library/%(title)s.%(etc)s'
 alias ytp='youtube-dl --output /Volumes/attic/electronics/%(title)s.%(etc)s'
 alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
+export GOPATH="$(go env GOPATH)"
 # Homebrew
 # brewO() {brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")'}
 brewI2C() {
@@ -51,10 +52,18 @@ brewI2C() {
   local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
   /usr/bin/diff =(print -l -- $installed) =(print -l -- $current)
 }
-
+# Brew options installed
 brewO() {brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")'}
 alias pipi="CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib pip install $@"
-
+# Brew install all options (for the frequent case of all options except "without" options; Meant to improve efficiency, not replace manual review
+function brewAllo () {                                                                                [09:52:30]
+    export _brewAllo_param="$1"
+    local opts=(${$(brew options --compact $_brewAllo_param)//--without*/})
+    print -l -- "$opts[@]"
+    brew install "$1" "$opts[@]"
+    print "num opts: $#opts"
+    print -- "args passed: $*"
+}
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
 
@@ -77,6 +86,9 @@ _pip_completion() {
              PIP_AUTO_COMPLETE=1 $words[1] ) )
 }
 compctl -K _pip_completion pip
+
+# Alias to run command with system perl environment: env unset PERL* variables and remove PATH elements with *perl*. macperl perl -V to verify.
+alias macperl="env $(print -- '-u '"${(f)^$(env |gi -o "^PERL.*" |cut -d= -f1)}") PATH=$(print -- ${(j%:%)${(s%:%)PATH}:#*perl*}) $*"
 
 # pip zsh completion end
 

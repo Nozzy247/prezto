@@ -1,0 +1,25 @@
+From 658fffb3a67a1f951d9c413802844694359caa7e Mon Sep 17 00:00:00 2001
+From: Kaleb Elwert <belak@coded.io>
+Date: Fri, 5 May 2017 09:58:19 -0700
+Subject: [PATCH] Allow ssh module to run on OSX
+
+---
+ modules/ssh/init.zsh | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/modules/ssh/init.zsh b/modules/ssh/init.zsh
+index 8caac92..3ead593 100644
+--- a/modules/ssh/init.zsh
++++ b/modules/ssh/init.zsh
+@@ -6,7 +6,7 @@
+ #
+ 
+ # Return if requirements are not found.
+-if [[ "$OSTYPE" == darwin* ]] || (( ! $+commands[ssh-agent] )); then
++if (( ! $+commands[ssh-agent] )); then
+   return 1
+ fi
+ 
+-- 
+2.12.2.575.gb14f27f91
+
