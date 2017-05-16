@@ -28,18 +28,20 @@ fi
 #
 # Paths
 #
-
+# Ensure path arrays do not contain duplicates.
+typeset -gU cdpath fpath mailpath path
 # Set the list of directories that Zsh searches for programs.
+
 path=(
+$HOME/.rbenv/shims
+$HOME/bin
 "$HOME/perl5/bin"
-"$HOME/.rbenv/shims"
 /usr/local/{bin,sbin}
 /usr/libexec
 "$path[@]"
-"$HOME/.gem/ruby/2.0.0/bin"
 )
 # "$HOME/.rbenv/versions/$(rbenv version-name)/bin"
-# ~/.fzf/bin
+# ~/.fzf/binæ
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -64,6 +66,8 @@ path=(
 
 # Fink initialization
 #. /sw/bin/init.sh
+# Set path for Mac Ports
+#export MANPATH=/opt/local/share/man:$MANPATH
 
 #
 # Less
@@ -97,3 +101,6 @@ TMPPREFIX="${TMPDIR%/}/zsh"
 
 # git config
 export GPG_TTY=$(tty)
+
+# Define lessc formula
+ lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
