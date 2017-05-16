@@ -102,7 +102,7 @@ LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
     . $LUNCHY_DIR/lunchy-completion.zsh
   fi
 
-alias pip-upgrade-all='for i ($(awk -v ORS=" " 'NR>2 { print $1 }' <(pip list))) pip install -U "$i" &'
+alias pip-upgrade-all="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
 # alias pip-upgrade-all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 alias pip3-upgrade-all='pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 
@@ -113,6 +113,9 @@ fi
 
 # added by travis gem
 [ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
+
+# Initialize Perlbrew
+source ~/perl5/perlbrew/etc/bashrc
 
 # calculate zshrc load end time
 local zshrc_end=$(gdate +%s%N)
