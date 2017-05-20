@@ -18,8 +18,6 @@ eval "$(rbenv init -)"
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# F path to completion functions
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 fpath=(
 /usr/local/share/zsh/site-functions
 $fpath
@@ -116,6 +114,8 @@ fi
 
 # Initialize Perlbrew
 source ~/perl5/perlbrew/etc/bashrc
+# Custom function to allow command to run with default macOS system perl environment
+alias macperl="env $(print -- '-u '"${(f)^$(env |gi -o "^PERL.*" |cut -d= -f1)}") PATH=$(print -- ${(j%:%)${(s%:%)PATH}:#*perl*}) $*"
 
 # calculate zshrc load end time
 local zshrc_end=$(gdate +%s%N)
