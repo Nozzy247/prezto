@@ -35,13 +35,10 @@ typeset -gU cdpath fpath mailpath path
 path=(
 $HOME/.rbenv/shims
 $HOME/bin
-"$HOME/perl5/bin"
 /usr/local/{bin,sbin}
 /usr/libexec
 "$path[@]"
 )
-# "$HOME/.rbenv/versions/$(rbenv version-name)/bin"
-# ~/.fzf/binæ
 
 # Set the the list of directories that cd searches.
 # cdpath=(
@@ -56,8 +53,6 @@ $HOME/bin
   autoload run-help
   HELPDIR=/usr/local/share/zsh/help
 
-# Fink initialization
-#. /sw/bin/init.sh
 # Set path for Mac Ports
 #export MANPATH=/opt/local/share/man:$MANPATH
 
@@ -68,7 +63,7 @@ $HOME/bin
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-F -g -i -M -R -S -w -z-4'
+export LESS='-g -i -M -R -S -w -z-4'
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
