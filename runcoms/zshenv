@@ -7,8 +7,12 @@ typeset -gU cdpath fpath path mailpath
 source "$HOME/.config/shell_tokens"
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
+export LC_ALL="en_US.UTF-8"
 setopt extended_glob
 # export HOMEBREW_CASK_OPTS=--require-sha
+# virtualenvwrapper README instructions for PROJECT_HOME and options
+export PROJECT_HOME="$HOME/Developer"
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--system-site-packages'
 
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
