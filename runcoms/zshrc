@@ -14,7 +14,7 @@ fpath=(
 )
 
 # gulp
-eval "$(gulp --completion=zsh)"
+# eval "$(gulp --completion=zsh)"
 
 # Personalizations
 alias rhelp=run-help
@@ -27,60 +27,76 @@ alias yta='youtube-dl -x --audio-format best --audio-quality 0'
 alias ytv='youtube-dl --output /Volumes/attic/YouTube\ Video\ Library/%(title)s.%(etc)s'
 alias ytp='youtube-dl --output /Volumes/attic/electronics/%(title)s.%(etc)s'
 alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
-brewO() {brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")'}
+brewO() { brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")' }
 brewI2C() {
   local installed=(${(Fo)$(brewO "$1")#*with-})
   local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
   /usr/bin/diff =(print -l -- $installed) =(print -l -- $current)
 }
+brewAllo () {                                                                                                                                           [23:52:58]
+    export _brewAllo_param="$1"
+    local opts=(${$(brew options --compact $1)//--without*/})
+    print -l -- "options :\n$opts[@]"
+    brew install "$1" "$opts[@]"
+    print "num opts: $#opts"
+    print -- "args passed: $*"
+}
+# homebrew package installed option
+brew_io () { brew info --json=v1 "$@" | jq -r -c '.[] |.installed[0] |.used_options' |gsed -e 's/[\"\[\]]*//g' -e 's/\,/ /g' }
+# homebrew's openssl
+alias openssl_env_homebrew='PATH="/usr/local/opt/openssl/bin:$PATH" PKG_CONFIG_PATH=/usr/local/opt/openssl/lib/pkgconfig LDFLAGS=-L/usr/local/opt/openssl/lib CPPFLAGS=-I/usr/local/opt/openssl/include $*'
+alias opensslh="openssl_env_homebrew openssl"
+
 # Directory shortcuts
 hash -d prezto="$HOME/.zprezto"
 hash -d proj="$HOME/projects"
 hash -d gitproj="$HOME/Documents/GitHub"
 # Networking
+
 alias netports="networksetup -listallhardwareports"
-PUBLIC_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+export PUBLIC_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 # set working dir to path of top Finder window
 alias fd="$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
 function copy-kill-whole-line {
   zle kill-whole-line
   echo -n $CUTBUFFER | pbcopy
+PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
 }
 
 # zmodload for modules with parameters
 zmodload -F zsh/stat b:zstat
 
-# iTerm2 shell integration hooks
-# source ~/.iterm2_shell_integration.zsh
-
 # Node version manager
-export NVM_DIR="$HOME"/.nvm
-. "/usr/local/opt/nvm/nvm.sh"
+# export NVM_DIR="$HOME"/.nvm
+# . "$NVM_DIR"/nvm.sh
 # place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" != "N/A" ] && [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm install
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
-gdate "+s%N"
 
 # # Node version manager
- export NVM_LAZY_LOAD=true
- source "/Users/ryan/.nvm/zsh-nvm/zsh-nvm.plugin.zsh"
+ # export NVM_LAZY_LOAD=true
+ source ~/.nvm/zsh-nvm/zsh-nvm.plugin.zsh
 
+ # autoload -U add-zsh-hook
+ # load-nvmrc() {
+ #   local node_version="$(nvm version)"
+ #   local nvmrc_path="$(nvm_find_nvmrc)"
+ #
+ #   if [ -n "$nvmrc_path" ]; then
+ #     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+ #
+ #     if [ "$nvmrc_node_version" != "N/A" ] && [ "$nvmrc_node_version" != "$node_version" ]; then
+ #       nvm install
+ #     fi
+ #   elif [ "$node_version" != "$(nvm version default)" ]; then
+ #     echo "Reverting to nvm default version"
+ #     nvm use default
+ #   fi
+ # }
+ # add-zsh-hook chpwd load-nvmrc
+ # load-nvmrc
+
+## Python
+# eval "$(pyenv init -)"
+# env "$(pyenv virtualenv-init -)"
 
 # pip zsh completion start
 function _pip_completion {
@@ -99,31 +115,42 @@ alias pip-upgrade-all="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xa
 # alias pip-upgrade-all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
 alias pip3-upgrade-all="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U"
 
-## Ruby
-# rbenv init (path & completions)
-eval "$(rbenv init -)"
-if [ -f ${RBENV_DIR:-$HOME/.rbenv} ]; then
-  path=("${RBENV_DIR:-$HOME/.rbenv}" "$path[@]")
-fi
 # added by travis gem
 [ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
 # Lunchy completion integration
-LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-  if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-    . $LUNCHY_DIR/lunchy-completion.zsh
-  fi
+# LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+#   if [ -f "$LUNCHY_DIR"/lunchy-completion.zsh ]; then
+#     . "$LUNCHY_DIR"/lunchy-completion.zsh
+#   fi
 
 ## Perl
+unset PERL{5LIB,_LOCAL_LIB_ROOT,_MB_OPT,_MM_OPT}
 # Initialize Perlbrew
 source ~/perl5/perlbrew/etc/bashrc
 # perl : By default non-brewed cpan modules are installed to the Cellar. If you wish for your modules to persist across updates we recommend using `local::lib`.
-perl5-init () {
-  path=("$HOME"/perl5/bin "$path[@]")
-  PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
-  eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
-  # Custom function to allow command to run with default macOS system perl environment
-  alias macperl="env $(print -- '-u '"${(f)^$(env |gi -o "^PERL.*" |cut -d= -f1)}") PATH=$(print -- ${(j%:%)${(s%:%)PATH}:#*perl*}) $*"
-}
+# perl5-init () {
+#   path=("$HOME"/perl5/bin "$path[@]")
+#   PERL_MM_OPT="INSTALL_BASE=$HOME/perl5" cpan local::lib
+#   eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+#   # Custom function to allow command to run with default macOS system perl environment
+#   alias macperl="env $(print -- '-u '"${(f)^$(env |gi -o "^PERL.*" |cut -d= -f1)}") PATH=$(print -- ${(j%:%)${(s%:%)PATH}:#*perl*}) $*"
+# }
+
+## Ruby
+# rbenv init (path & completions)
+if [[ -n "$RBENV" ]]; then
+  eval "$(rbenv init -)"
+  if [ -f "${RBENV_DIR:-$HOME}/.rbenv}" ]; then
+    PATH=("${RBENV_DIR:-$HOME}/.rbenv:$PATH")
+  fi
+else
+  # chruby
+  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  # chruby auto version from .ruby-version at project root
+  source /usr/local/opt/chruby/share/chruby/auto.sh
+  # migrate ruby versino from RBENV
+  RUBIES+=("$($(brew --prefix)/bin/rbenv root)"/versions/*)
+fi
 
 # calculate zshrc load end time
 local zshrc_end=$(gdate +%s%N)
@@ -135,3 +162,8 @@ if [[ -o login ]]; then
 fi
 unset zshrc_end
 unset zshrc_start
+
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+# Executes commands at login post-zshrc.
+if [[ -f ~/.profile ]] source ~/.profile

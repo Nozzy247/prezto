@@ -1,5 +1,4 @@
 #!/usr/bin/env zsh
-# Executes commands at login post-zshrc.
 
 # Execute code that does not affect the current session in the background.
 {
@@ -10,6 +9,7 @@
   fi
 } &!
 
+PS1=`sed "/^$/d" <<< "$PS1"`
 # Print a random, hopefully interesting, adage.
 # if (( $+commands[fortune] )); then
 #   if [[ -t 0 || -t 1 ]]; then

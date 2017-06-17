@@ -11,7 +11,7 @@
 zstyle ':prezto:*:*' color 'yes'
 
 # Set the Zsh modules to load (man zshmodules).
- zstyle ':prezto:load' zmodule 'attr' 'computil' 'complete' 'zprof' 'zutil' 'mapfile'
+ zstyle ':prezto:load' zmodule 'attr'
 
 # Set the Zsh functions to load (man zshcontrib).
  zstyle ':prezto:load' zfunction 'zargs' 'zmv'
@@ -19,13 +19,13 @@ zstyle ':prezto:*:*' color 'yes'
 # Set the Prezto modules to load (browse modules).
 # The order matters.
 zstyle ':prezto:load' pmodule \
-      'environment' \
-      'terminal' \
-      'editor' \
-      'history' \
-      'directory' \
+  'environment' \
+  'terminal' \
+  'editor' \
+  'history' \
+  'directory' \
       'osx' \
-      'spectrum' \
+  'spectrum' \
       'homebrew' \
       'python' \
       'rsync' \
@@ -33,8 +33,8 @@ zstyle ':prezto:load' pmodule \
       'gpg' \
       'ssh' \
       'homebrew' \
-      'utility' \
-      'completion' \
+  'utility' \
+  'completion' \
       'terminal' \
       'node' \
       'utility' \
@@ -42,16 +42,14 @@ zstyle ':prezto:load' pmodule \
       'archive' \
       'syntax-highlighting' \
       'history-substring-search' \
-      'prompt'
-
-zstyle ':prezto:module:prompt' theme 'paradox'
+  'prompt'
 
 #
 # Autosuggestions
 #
 
 # Set the query found color.
- zstyle ':prezto:module:autosuggestions:color' found 'green'
+# zstyle ':prezto:module:autosuggestions:color' found ''
 
 #
 # Editor
@@ -63,12 +61,15 @@ zstyle ':prezto:module:editor' key-bindings 'emacs'
 # Auto convert .... to ../..
 # zstyle ':prezto:module:editor' dot-expansion 'yes'
 
+# Allow the zsh prompt context to be shown.
+zstyle ':prezto:module:editor' ps-context 'yes'
+
 #
 # Git
 #
 
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
- zstyle ':prezto:module:git:status:ignore' submodules 'dirty'
+# zstyle ':prezto:module:git:status:ignore' submodules 'all'
 
 #
 # GNU Utility
@@ -109,21 +110,19 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # Set how themes that use promptpwd function display the pwd, can be 'short', 'long', or 'full'
 # zstyle ':prezto:module:prompt' pwd-length 'short'
 
-# Set how themes that use promptpwd function display the pwd, can be 'short', 'long', or 'full'
-# zstyle ':prezto:module:prompt' pwd-length 'short'
-
-# Set how themes that use promptpwd function display the pwd, can be 'short', 'long', or 'full'
-# zstyle ':prezto:module:prompt' pwd-length 'short'
-
-# Set how themes that use promptpwd function display the pwd, can be 'short', 'long', or 'full'
-# zstyle ':prezto:module:prompt' pwd-length 'short'
-
 #
 # Ruby
 #
 
 # Auto switch the Ruby version on directory change.
-# zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+#zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+
+#
+# Python
+#
+
+# Auto switch the Python virtualenv on directory change.
+#zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 
 #
 # Screen
@@ -148,35 +147,39 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
- zstyle ':prezto:module:syntax-highlighting' highlighters \
-   'main' \
-   'brackets' \
-  'pattern' \
-   'line' \
-   'cursor' \
-   'root'
+# zstyle ':prezto:module:syntax-highlighting' highlighters \
+#   'main' \
+#   'brackets' \
+#   'pattern' \
+#   'line' \
+#   'cursor' \
+#   'root'
 #
 # Set syntax highlighting styles.
  zstyle ':prezto:module:syntax-highlighting' styles \
    'builtin' 'fg=purple' \
    'command' 'fg=green' \
    'function' 'fg=blue'
+#
+# Set syntax pattern styles.
+# zstyle ':prezto:module:syntax-highlighting' pattern \
+#   'rm*-rf*' 'fg=white,bold,bg=red'
 
 #
 # Terminal
 #
 
 # Auto set the tab and window titles.
- zstyle ':prezto:module:terminal' auto-title 'yes'
+zstyle ':prezto:module:terminal' auto-title 'yes'
 
 # Set the window title format.
- zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
 
 # Set the tab title format.
-# zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
+zstyle ':prezto:module:terminal:tab-title' format '%m: %s'
 
 # Set the terminal multiplexer title format.
-# zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
+zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 
 #
 # Tmux
@@ -189,7 +192,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 
 # Set the default session name:
 # zstyle ':prezto:module:tmux:session' name 'YOUR DEFAULT SESSION NAME'

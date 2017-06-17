@@ -73,7 +73,7 @@ if is-callable 'dircolors'; then
       eval "$(dircolors --sh)"
     fi
 
-    # alias ls="${aliases[ls]:-ls} --color=auto"
+    alias ls="${aliases[ls]:-ls} --color=auto"
   else
     alias ls="${aliases[ls]:-ls} -F"
   fi
