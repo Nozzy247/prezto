@@ -6,13 +6,6 @@ local zshrc_start=$(gdate +%s%N)
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-fpath=(
-/usr/local/share/zsh/site-functions
-/usr/local/Homebrew/completions
-"$fpath[@]"
-/usr/local/var/homebrew/linked/zsh/share/zsh/functions
-)
-
 # gulp
 # eval "$(gulp --completion=zsh)"
 
@@ -22,10 +15,13 @@ alias gi='grep -i'
 export GOPATH="$(go env GOPATH)"
 export CLICOLOR=xterm-color
 export PIP_FORMAT=columns
+alias lsg="/usr/local/bin/gls --color=auto"
 alias yt=youtube-dl
-alias yta='youtube-dl -x --audio-format best --audio-quality 0'
+alias yta='youtube-dl -x --audio-format mp3 --audio-quality 0'
 alias ytv='youtube-dl --output /Volumes/attic/YouTube\ Video\ Library/%(title)s.%(etc)s'
 alias ytp='youtube-dl --output /Volumes/attic/electronics/%(title)s.%(etc)s'
+
+## Homebrew aliases & functions
 alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
 brewO() { brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")' }
 brewI2C() {
@@ -72,7 +68,7 @@ zmodload -F zsh/stat b:zstat
 # place this after nvm initialization!
 
 # # Node version manager
- # export NVM_LAZY_LOAD=true
+ export NVM_LAZY_LOAD=true
  source ~/.nvm/zsh-nvm/zsh-nvm.plugin.zsh
 
  # autoload -U add-zsh-hook
@@ -96,7 +92,8 @@ zmodload -F zsh/stat b:zstat
 
 ## Python
 # eval "$(pyenv init -)"
-# env "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)" && pyenv virtualenvwrapper
 
 # pip zsh completion start
 function _pip_completion {
@@ -117,16 +114,10 @@ alias pip3-upgrade-all="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | 
 
 # added by travis gem
 [ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
-# Lunchy completion integration
-# LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-#   if [ -f "$LUNCHY_DIR"/lunchy-completion.zsh ]; then
-#     . "$LUNCHY_DIR"/lunchy-completion.zsh
-#   fi
 
 ## Perl
 unset PERL{5LIB,_LOCAL_LIB_ROOT,_MB_OPT,_MM_OPT}
-# Initialize Perlbrew
-source ~/perl5/perlbrew/etc/bashrc
+
 # perl : By default non-brewed cpan modules are installed to the Cellar. If you wish for your modules to persist across updates we recommend using `local::lib`.
 # perl5-init () {
 #   path=("$HOME"/perl5/bin "$path[@]")
@@ -151,6 +142,13 @@ else
   # migrate ruby versino from RBENV
   RUBIES+=("$($(brew --prefix)/bin/rbenv root)"/versions/*)
 fi
+# Lunchy completion integration
+lunchy_completion_init () {
+  LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
+  if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
+    . $LUNCHY_DIR/lunchy-completion.zsh
+  fi
+}
 
 # calculate zshrc load end time
 local zshrc_end=$(gdate +%s%N)
@@ -167,3 +165,5 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 
 # Executes commands at login post-zshrc.
 if [[ -f ~/.profile ]] source ~/.profile
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

@@ -24,25 +24,26 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'history' \
   'directory' \
-      'osx' \
+  'osx' \
   'spectrum' \
-      'homebrew' \
-      'python' \
-      'rsync' \
-      'gnu-utility' \
-      'gpg' \
-      'ssh' \
-      'homebrew' \
+  'homebrew' \
+  'rsync' \
+  'gnu-utility' \
+  'gpg' \
+  'ssh' \
+  'homebrew' \
   'utility' \
   'completion' \
-      'terminal' \
-      'node' \
-      'utility' \
-      'git' \
-      'archive' \
-      'syntax-highlighting' \
-      'history-substring-search' \
+  'terminal' \
+  'perl' \
+  'node' \
+  'utility' \
+  'git' \
+  'archive' \
+  'syntax-highlighting' \
+  'history-substring-search' \
   'prompt'
+  # 'python' \
 
 #
 # Autosuggestions

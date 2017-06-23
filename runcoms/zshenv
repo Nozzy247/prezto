@@ -7,24 +7,36 @@ typeset -gU cdpath fpath path mailpath
 
 setopt extended_glob
 
+# pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
+export PYENV_VIRTUALENV_DISABLE_PROMPT=1
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+# system-wide environment settings for zsh(1)
+if [ -x /usr/libexec/path_helper ]; then
+    eval `/usr/libexec/path_helper -s`
+fi
+# Set the list of directories that Zsh searches for programs.
+path=(
+"$HOME/bin"
+/usr/{local/,}{bin,sbin}
+"$path[@]"
+)
+
+fpath=(
+/usr/local/share/zsh/site-functions
+/usr/local/Homebrew/completions
+"$fpath[@]"
+/usr/local/var/homebrew/linked/zsh/share/zsh/functions
+)
 
 #
 ## Perl
 #
 
 # perlbrew initialization
-
 # Append the following piece of code to the end of your ~/.zshenv and start a new shell, perlbrew should be up and fully functional from there:
 source ~/perl5/perlbrew/etc/bashrc
-
-# Set the list of directories that Zsh searches for programs.
-path=("${(f)$(< /etc/paths < /etc/paths.d/*)}")
-path=(
-"$HOME/bin"
-/usr/{local/,}{bin,sbin}
-"$path[@]"
-)

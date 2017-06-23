@@ -9,7 +9,10 @@
   fi
 } &!
 
-PS1=`sed "/^$/d" <<< "$PS1"`
+# Set prompt
+PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
+
+#PS1=`sed "/^$/d" <<< "$PS1"`
 # Print a random, hopefully interesting, adage.
 # if (( $+commands[fortune] )); then
 #   if [[ -t 0 || -t 1 ]]; then

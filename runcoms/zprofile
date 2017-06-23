@@ -57,6 +57,11 @@ typeset -gU cdpath fpath mailpath path
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
 export LESS='-g -i -M -R -S -w -z-4'
 
+export LESSOPEN="| /path/to/src-hilite-lesspipe.sh %s"
+
+# Define lessc formula
+lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
+
 #
 # Temporary Files
 #
@@ -69,9 +74,3 @@ if [[ ! -d "$TMPDIR" ]]; then
   mkdir "$TMPDIR"
   chmod 700 "$TMPDIR"
 fi
-
-# Set prompt
-#PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
-
-# Define lessc formula
- lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
