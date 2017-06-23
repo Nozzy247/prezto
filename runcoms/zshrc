@@ -1,5 +1,8 @@
 # Executes commands at the start of an interactive session.
 
+# Executes commands for all shells
+[[ -r ~/.profile ]] && source ~/.profile
+
 zmodload zsh/zprof
 local zshrc_start=$(gdate +%s%N)
 
@@ -92,8 +95,8 @@ zmodload -F zsh/stat b:zstat
 
 ## Python
 # eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-eval "$(pyenv init -)" && pyenv virtualenvwrapper
+eval "$(pyenv init -)" #&& pyenv virtualenvwrapper
+eval "$(pyenv virtualenv-init -)"
 
 # pip zsh completion start
 function _pip_completion {
@@ -162,8 +165,5 @@ unset zshrc_end
 unset zshrc_start
 
 source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-
-# Executes commands at login post-zshrc.
-if [[ -f ~/.profile ]] source ~/.profile
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
