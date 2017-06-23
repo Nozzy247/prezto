@@ -8,7 +8,7 @@
 #
 # Version Check
 #
-echo 'init.zsh'
+
 # Ensure path arrays do not contain duplicates.
 typeset -gU cdpath fpath path mailpath
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 # Executes commands at login pre-zshrc.
-echo '~zprofile'
+
 #
 # Browser
 #
