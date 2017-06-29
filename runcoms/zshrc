@@ -55,7 +55,7 @@ hash -d gitproj="$HOME/Documents/GitHub"
 alias netports="networksetup -listallhardwareports"
 export PUBLIC_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 # set working dir to path of top Finder window
-alias fd="$(osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)')"
+alias fd="osascript -e 'tell app \"Finder\" to POSIX path of (insertion location as alias)'"
 function copy-kill-whole-line {
   zle kill-whole-line
   echo -n $CUTBUFFER | pbcopy
@@ -95,9 +95,11 @@ zmodload -F zsh/stat b:zstat
 
 ## Python
 # eval "$(pyenv init -)"
-eval "$(pyenv init -)" #&& pyenv virtualenvwrapper
-eval "$(pyenv virtualenv-init -)"
+eval "$(pyenv init -)" && pyenv virtualenvwrapper
+# eval "$(pyenv virtualenv-init -)"
 
+alias py=python
+alias -s md=mdv
 # pip zsh completion start
 function _pip_completion {
   local words cword
