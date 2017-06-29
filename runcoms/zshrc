@@ -18,6 +18,8 @@ alias gi='grep -i'
 export GOPATH="$(go env GOPATH)"
 export CLICOLOR=xterm-color
 export PIP_FORMAT=columns
+
+# youtube-dl
 alias lsg="/usr/local/bin/gls --color=auto"
 alias yt=youtube-dl
 alias yta='youtube-dl -x --audio-format mp3 --audio-quality 0'
@@ -50,8 +52,9 @@ alias opensslh="openssl_env_homebrew openssl"
 hash -d prezto="$HOME/.zprezto"
 hash -d proj="$HOME/projects"
 hash -d gitproj="$HOME/Documents/GitHub"
-# Networking
+hash -d dl="$HOME/Downloads"
 
+# Networking
 alias netports="networksetup -listallhardwareports"
 export PUBLIC_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
 # set working dir to path of top Finder window
@@ -62,17 +65,14 @@ function copy-kill-whole-line {
 PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
 }
 
-# zmodload for modules with parameters
-zmodload -F zsh/stat b:zstat
-
 # Node version manager
 # export NVM_DIR="$HOME"/.nvm
 # . "$NVM_DIR"/nvm.sh
 # place this after nvm initialization!
 
 # # Node version manager
- export NVM_LAZY_LOAD=true
- source ~/.nvm/zsh-nvm/zsh-nvm.plugin.zsh
+ # export NVM_LAZY_LOAD=true
+ # source ~/.nvm/zsh-nvm/zsh-nvm.plugin.zsh
 
  # autoload -U add-zsh-hook
  # load-nvmrc() {
@@ -95,7 +95,7 @@ zmodload -F zsh/stat b:zstat
 
 ## Python
 # eval "$(pyenv init -)"
-eval "$(pyenv init -)" && pyenv virtualenvwrapper
+# eval "$(pyenv init -)" && pyenv virtualenvwrapper
 # eval "$(pyenv virtualenv-init -)"
 
 alias py=python
@@ -134,26 +134,19 @@ unset PERL{5LIB,_LOCAL_LIB_ROOT,_MB_OPT,_MM_OPT}
 
 ## Ruby
 # rbenv init (path & completions)
-if [[ -n "$RBENV" ]]; then
-  eval "$(rbenv init -)"
-  if [ -f "${RBENV_DIR:-$HOME}/.rbenv}" ]; then
-    PATH=("${RBENV_DIR:-$HOME}/.rbenv:$PATH")
-  fi
-else
+# if [[ -n "$RBENV" ]]; then
+  # eval "$(rbenv init -)"
+  # if [ -f "${RBENV_DIR:-$HOME}/.rbenv}" ]; then
+    # PATH=("${RBENV_DIR:-$HOME}/.rbenv:$PATH")
+  # fi
+# else
   # chruby
-  source /usr/local/opt/chruby/share/chruby/chruby.sh
+  # source /usr/local/opt/chruby/share/chruby/chruby.sh
   # chruby auto version from .ruby-version at project root
-  source /usr/local/opt/chruby/share/chruby/auto.sh
+  # source /usr/local/opt/chruby/share/chruby/auto.sh
   # migrate ruby versino from RBENV
-  RUBIES+=("$($(brew --prefix)/bin/rbenv root)"/versions/*)
-fi
-# Lunchy completion integration
-lunchy_completion_init () {
-  LUNCHY_DIR=$(dirname `gem which lunchy`)/../extras
-  if [ -f $LUNCHY_DIR/lunchy-completion.zsh ]; then
-    . $LUNCHY_DIR/lunchy-completion.zsh
-  fi
-}
+  # RUBIES+=("$($(brew --prefix)/bin/rbenv root)"/versions/*)
+# fi
 
 # calculate zshrc load end time
 local zshrc_end=$(gdate +%s%N)
