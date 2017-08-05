@@ -1,9 +1,4 @@
-# Sets Prezto options.
-
-#
-# General
-#
-
+#!/usr/bin/env zsh
 # Set case-sensitivity for completion, history lookup, etc.
 # zstyle ':prezto:*:*' case-sensitive 'yes'
 
@@ -35,6 +30,7 @@ zstyle ':prezto:load' pmodule \
   'gpg' \
   'ssh' \
   'homebrew' \
+  'python' \
   'utility' \
   'completion' \
   'terminal' \
@@ -125,7 +121,8 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #
 
 # Auto switch the Python virtualenv on directory change.
-# zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+ zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+ export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--system-site-packages'
 
 #
 # Screen
