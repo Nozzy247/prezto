@@ -34,7 +34,6 @@ zstyle ':prezto:load' pmodule \
   'gnu-utility' \
   'gpg' \
   'ssh' \
-  'python' \
   'homebrew' \
   'utility' \
   'completion' \
@@ -126,7 +125,7 @@ zstyle ':prezto:module:prompt' theme 'paradox'
 #
 
 # Auto switch the Python virtualenv on directory change.
-zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
+# zstyle ':prezto:module:python:virtualenv' auto-switch 'yes'
 
 #
 # Screen
