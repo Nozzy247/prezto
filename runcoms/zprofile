@@ -45,17 +45,15 @@ typeset -gU cdpath fpath mailpath path
   autoload run-help
   HELPDIR=/usr/local/share/zsh/help
 
-# Set path for Mac Ports
-#export MANPATH=/opt/local/share/man:$MANPATH
 
 #
 # Less
 #
 
-export LESSOPEN="| /path/to/src-hilite-lesspipe.sh %s"
+export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s 2>1:"
 
 # Define lessc formula
-lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
+# lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
 
 #
 # Temporary Files
@@ -65,7 +63,7 @@ if [[ -z "$TMPDIR" ]]; then
   export TMPDIR="/tmp/zsh-$UID"
 fi
 
-if [[ ! -d "$TMPDIR" ]]; then
-  mkdir "$TMPDIR"
-  chmod 700 "$TMPDIR"
-fi
+# if [[ ! -d "$TMPDIR" ]]; then
+#   mkdir "$TMPDIR"
+#   chmod 700 "$TMPDIR"
+# fi

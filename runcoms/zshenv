@@ -6,7 +6,7 @@
 typeset -gU cdpath fpath path mailpath
 
 setopt extended_glob
-SHELL="$0"; export SHELL
+SHELL="zsh"=; export SHELL
 
 # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
 # export PYENV_VIRTUALENV_DISABLE_PROMPT=1

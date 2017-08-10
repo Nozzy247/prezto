@@ -7,3 +7,4 @@
 # Thank you. Come again!
 #   -- Dr. Apu Nahasapeemapetilon
 # EOF
+[ "$VIRTUAL_ENV" ] && deactivate
