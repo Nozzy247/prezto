@@ -37,11 +37,7 @@ typeset -gU cdpath fpath mailpath path
 #   $cdpath
 # )
 
-# Set path for Mac Ports
-#export MANPATH=/opt/local/share/man:$MANPATH
-
-# Configure to acccess the Zsh help pages
-  unalias run-help &> /dev/null
+# Set the list of directories that Zsh searches for programs.
   autoload run-help
   HELPDIR=/usr/local/share/zsh/help
 
@@ -49,21 +45,12 @@ typeset -gU cdpath fpath mailpath path
 #
 # Less
 #
+# Set the default Less options.
 
+# Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
+# Remove -X and -F (exit if the content fits on one screen) to enable it.
+export LESS='-F -g -i -M -R -S -w -z-4'
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s 2>1:"
 
 # Define lessc formula
-# lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
-
-#
-# Temporary Files
-#
-#
-if [[ -z "$TMPDIR" ]]; then
-  export TMPDIR="/tmp/zsh-$UID"
-fi
-
-# if [[ ! -d "$TMPDIR" ]]; then
-#   mkdir "$TMPDIR"
-#   chmod 700 "$TMPDIR"
-# fi
+lessc () { vim -u /usr/share/vim/vim74/macros/less.vim "$@" }
