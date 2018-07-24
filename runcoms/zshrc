@@ -42,7 +42,7 @@ alias ytp='youtube-dl --output /Volumes/attic/electronics/%(title)s.%(etc)s'
 
 ## Homebrew aliases & functions
 alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
-brewO() { brewI --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")' }
+brewO() { brew info --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")' }
 brewI2C() {
   local installed=(${(Fo)$(brewO "$1")#*with-})
   local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
@@ -100,7 +100,6 @@ PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
      # eval "$(pyenv init -)" && pyenv virtualenvwrapper
      # eval "$(pyenv virtualenv-init -)"
 
-     alias py=python
      alias -s md=mdv
      # pip zsh completion start
      function _pip_completion {
