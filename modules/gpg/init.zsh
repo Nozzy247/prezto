@@ -14,11 +14,11 @@ fi
 _gpg_agent_conf="${GNUPGHOME:-$HOME/.gnupg}/gpg-agent.conf"
 _gpg_agent_env="${TMPDIR:-/tmp}/gpg-agent.env.$UID"
 
+# Load environment variables from previous run
+source "$_gpg_agent_env" 2> /dev/null
+
 # Start gpg-agent if not started.
 if [[ -z "$GPG_AGENT_INFO" && ! -S "${GNUPGHOME:-$HOME/.gnupg}/S.gpg-agent" ]]; then
-  # Export environment variables.
-  source "$_gpg_agent_env" 2> /dev/null
-
   # Start gpg-agent if not started.
   if ! ps -U "$LOGNAME" -o pid,ucomm | grep -q -- "${${${(s.:.)GPG_AGENT_INFO}[2]}:--1} gpg-agent"; then
     eval "$(gpg-agent --daemon | tee "$_gpg_agent_env")"
@@ -26,7 +26,7 @@ if [[ -z "$GPG_AGENT_INFO" && ! -S "${GNUPGHOME:-$HOME/.gnupg}/S.gpg-agent" ]]; 
 fi
 
 # Inform gpg-agent of the current TTY for user prompts.
-export GPG_TTY="$(tty)"
+export GPG_TTY=$TTY
 
 # Integrate with the SSH module.
 if grep '^enable-ssh-support' "$_gpg_agent_conf" &> /dev/null; then
