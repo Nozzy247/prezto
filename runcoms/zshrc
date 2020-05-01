@@ -48,7 +48,7 @@ brewI2C() {
   local current=("${(f)$(brew options "$1" | sed -E -e '/^--with-/!d' -e 's/^--with-(.*)/\1/')}")
   /usr/bin/diff =(print -l -- $installed) =(print -l -- $current)
 }
-brewAllo () {                                                                                                                                           [23:52:58]
+brewAllo () {
     export _brewAllo_param="$1"
     local opts=(${$(brew options --compact $1)//--without*/})
     print -l -- "options :\n$opts[@]"
