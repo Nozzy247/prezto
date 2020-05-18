@@ -11,6 +11,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs..
+export latest_iTerm2_log=(/Users/ryan/Library/Logs/*(.om[1]))
 
 # Fuzzy Completions
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
@@ -21,7 +22,7 @@ fpath=(
 /usr/local/share/zsh/site-functions
 $fpath
 /usr/local/var/homebrew/linked/zsh/share/zsh/functions
-/usr/local/Cellar/zsh-completions/0.22.0/share/zsh-completions
+/usr/local/Cellar/zsh-completions/*/share/zsh-completions(om[1])
 )
 
 # gulp
@@ -41,7 +42,7 @@ alias ytv='youtube-dl --output /Volumes/attic/YouTube\ Video\ Library/%(title)s.
 alias ytp='youtube-dl --output /Volumes/attic/electronics/%(title)s.%(etc)s'
 
 ## Homebrew aliases & functions
-alias openssl-brew='/usr/local/opt/openssl/bin/openssl'
+alias brew-openssl='/usr/local/opt/openssl/bin/openssl'
 brewO() { brew info --json=v1 "$1" |jq -j '.[]| .installed[-1].used_options | join(" ")' }
 brewI2C() {
   local installed=(${(Fo)$(brewO "$1")#*with-})
@@ -68,7 +69,7 @@ hash -d gitproj="$HOME/Documents/GitHub"
 # Networking
 
 alias netports="networksetup -listallhardwareports"
-export PUBLIC_IP=`dig +short myip.opendns.com @resolver1.opendns.com`
+#alias fetch_PUBLIC_IP="/usr/bin/curl ifconfig.co"
 # set working dir to path of top Finder window
 alias fd="osascript -e 'tell app \"Finder\" to POSIX path of (insertion location as alias)'"
 function copy-kill-whole-line {
@@ -77,7 +78,7 @@ function copy-kill-whole-line {
 PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
 }
 
-      # load-nvmrc() {
+# load-nvmrc() {
       #   local node_version="$(nvm version)"
       #   local nvmrc_path="$(nvm_find_nvmrc)"
       #
@@ -96,9 +97,10 @@ PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
       # load-nvmrc
 
      ## Python
-     # eval "$(pyenv init -)"
+      #eval "$(pyenv init -)"
      # eval "$(pyenv init -)" && pyenv virtualenvwrapper
      # eval "$(pyenv virtualenv-init -)"
+     if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
      alias -s md=mdv
      # pip zsh completion start
@@ -114,12 +116,12 @@ PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
      # pip zsh completion end
      alias pipi="CFLAGS=-I$(brew --prefix)/include LDFLAGS=-L$(brew --prefix)/lib pip install $@"
 
-     alias pip-upgrade-all="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U"
+     alias pip-upgrade-all="python -m pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 python -m pip install -U"
      # alias pip-upgrade-all='pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U'
      alias pip3-upgrade-all="pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U"
 
      # added by travis gem
-     [ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
+     # [ -f /Users/ryan/.travis/travis.sh ] && source /Users/ryan/.travis/travis.sh
 
      ## Perl
      unset PERL{5LIB,_LOCAL_LIB_ROOT,_MB_OPT,_MM_OPT}
@@ -134,9 +136,9 @@ PS1=$'${(e)$(prompt_paradox_build_prompt)}\n ${editor_info[keymap]} '
      # }
 
 
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+#}
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 gdate "+s%N"
 # calculate zshrc load end time
 local zshrc_end=$(gdate +%s%N)
