@@ -11,6 +11,9 @@ SHELL="zsh"; export SHELL
 # pyenv-virtualenv: prompt changing will be removed from future release. configure `export PYENV_VIRTUALENV_DISABLE_PROMPT=1' to simulate the behavior.
 export PYENV_VIRTUALENV_DISABLE_PROMPT=1
 
+# Set JavaHome
+export JAVA_HOME=`/usr/libexec/java_home -v 14`
+
 # Ensure that a non-login, non-interactive shell has a defined environment.
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
@@ -20,11 +23,14 @@ fi
 if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper -s`
 fi
+
 # Set the list of directories that Zsh searches for programs.
 path=(
 "$HOME/bin"
 /usr/{local/,}{bin,sbin}
+/usr/local/opt/qt/bin
 "$path[@]"
+"$HOME/Qt/5.9.7/clang_64/bin"
 )
 
 fpath=(
