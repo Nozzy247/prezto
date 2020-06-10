@@ -25,14 +25,16 @@ export PAGER='less'
 # Language
 #
 
-[[ -z "$LANG" ]] && export LANG='en_US.UTF-8'
+if [[ -z "$LANG" ]]; then
+  export LANG='en_US.UTF-8'
+fi
 
 #
 # Paths
 #
 
 # Ensure path arrays do not contain duplicates.
-
+typeset -gU cdpath fpath mailpath path
 
 # Set the list of directories that cd searches.
 # cdpath=(
@@ -41,17 +43,10 @@ export PAGER='less'
 
 # Set the list of directories that Zsh searches for programs.
 path=(
-  /usr/local/opt/openssl@1.1/bin
-  /usr/local/opt/python/libexec/bin
-  /usr/{local/,}{bin,sbin}
-  "$path[@]"
-  "$HOME"/bin
+  /usr/local/{bin,sbin}
+  $path
 )
 
-TERM="xterm-256color"; export TERM
-
-#python
-# export PIP_REQUIRE_VIRTUALENV=false #set this in ~/Library/Application Support/pip/pip.conf
 #
 # Less
 #
@@ -59,7 +54,7 @@ TERM="xterm-256color"; export TERM
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
 # Remove -X and -F (exit if the content fits on one screen) to enable it.
-export LESS='-g -i -M -R -S -w -z-4'
+export LESS='-F -g -i -M -R -S -w -X -z-4'
 
 # Set the Less input preprocessor.
 # Try both `lesspipe` and `lesspipe.sh` as either might exist on a system.
