@@ -5,10 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# Load pyenv-virtualenv automatically by adding
-# the following to ~/.zshrc:
-eval "$(pyenv virtualenv-init -)"
-
 #
 # Executes commands at the start of an interactive session.
 #
@@ -23,7 +19,70 @@ fi
 
 # Customize to your needs...
 
+export HISTSIZE=50000
+
+setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+setopt APPEND_HISTORY            # append to history file
+setopt HIST_NO_STORE             # Don't store history commands
+
+[[ -r "$HOME"/.config/shell_tokens ]] && source "$HOME"/.config/shell_tokens
+
+#Homebrew path initialization
+[ -d "${HOMEBREW_PREFIX:=/usr/local}" ] || [ -h "${HOMEBREW_PREFIX}" ] && [ -d "$(realpath $HOMEBREW_PREFIX)" ] || export HOMEBREW_PREFIX="/usr/local"
+export HOMEBREW_PREFIX="$(realpath $HOMEBREW_PREFIX)"
+eval `"${HOMEBREW_PREFIX}/bin/brew" shellenv`
+alias brewI="$HOMEBREW_PREFIX/bin/brew info"
+
+# Load pyenv-virtualenv automatically by adding
+# the following to ~/.zshrc:
+eval "$(pyenv virtualenv-init -)"
+pyenv virtualenvwrapper
+
+# # pipe output to grep
+# alias -g G='| grep'
+# # pipe output to less
+# alias -g L='| less'
+# # pipe output to `wc` with option `-l`
+# alias -g W='| wc -l'
+# # convert multiline output to single line and copy it to the system clipboard
+# alias -g C='| tr -d ''\n'' | xclip -selection clipboard'
+
+# Search through your command history and print the top 10 commands
+alias history-stat='history 0 | awk ''{print $2}'' | sort | uniq -c | sort -n -r | head'
+
+# Use `which` to find aliases and functions including binaries
+# which='(alias; declare -f) | /usr/bin/which --tty-only --read-alias --read-functions --show-tilde --show-dot'
+# function curl-cert() {
+#   openssl s_client -showcerts -connect "${1}":443 -servername ${1}
+# }
+# disappointed() { echo -n " ಠ_ಠ " |tee /dev/tty| xclip -selection clipboard; }
+
+# flip() { echo -n "（╯°□°）╯ ┻━┻" |tee /dev/tty| xclip -selection clipboard; }
+#
+# shrug() { echo -n "¯\_(ツ)_/¯" |tee /dev/tty| xclip -selection clipboard; }
+#
+# matrix() { echo -e "\e[1;40m" ; clear ; while :; do echo $LINES $COLUMNS $(( $RANDOM % $COLUMNS)) $(( $RANDOM % 72 )) ;sleep 0.05; done|awk '{ letters="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()"; c=$4;        letter=substr(letters,c,1);a[$3]=0;for (x in a) {o=a[x];a[x]=a[x]+1; printf "\033[%s;%sH\033[2;32m%s",o,x,letter; printf "\033[%s;%sH\033[1;37m%s\033[0;0H",a[x],x,letter;if (a[x] >= $1) { a[x]=0; } }}' }
+
+#
+# Ruby
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+(( ! ${+functions[p10k]} )) || p10k finalize
+
+export NVM_DIR="$HOME"/.nvm
+# This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR"/nvm.sh
+test -e /Users/ryan/.iterm2_shell_integration.zsh && source /Users/ryan/.iterm2_shell_integration.zsh || true
+alias DNSupdate="curl -s https://awsme:hK5LhPtr@freedns.afraid.org/nic/update\?hostname\=007.crabdance.com"

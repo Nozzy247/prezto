@@ -25,7 +25,7 @@ zstyle ':prezto:*:*' color 'yes'
 zstyle ':prezto:load' zmodule 'attr' 'stat'
 
 # Set the Zsh functions to load (man zshcontrib).
-zstyle ':prezto:load' zfunction 'zargs' 'zmv'
+zstyle ':prezto:load' zfunction 'zargs' 'zmv' 'ztcp'
 
 # Set the Prezto modules to load (browse modules).
 # The order matters.
@@ -36,12 +36,16 @@ zstyle ':prezto:load' pmodule \
   'history' \
   'directory' \
   'spectrum' \
-  'python' \
-  'ssh' \
+  'homebrew' \
   'utility' \
+  'python' \
+  'ruby' \
+  'syntax-highlighting' \
+  'history-substring-search' \
   'completion' \
+  'ssh' \
   'prompt' \
-  'ssh'
+  # 'node' \
 
   #Set the Powerlevel10k theme
   source "$HOME"/powerlevel10k/powerlevel10k.zsh-theme
@@ -173,19 +177,19 @@ zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa_ryan-gi' 'id_rsa_gi
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-zstyle ':prezto:module:syntax-highlighting' highlighters \
-  'main' \
-  'brackets' \
-  'pattern' \
-  'line' \
-  'cursor' \
-  'root'
+# zstyle ':prezto:module:syntax-highlighting' highlighters \
+#   'main' \
+#   'brackets' \
+#   'pattern' \
+#   'line' \
+#   'cursor' \
+#   'root'
 #
 # Set syntax highlighting styles.
 zstyle ':prezto:module:syntax-highlighting' styles \
-  'builtin' 'bg=blue' \
-  'command' 'bg=blue' \
-  'function' 'bg=blue'
+  'builtin' 'fg=blue' \
+  'command' 'fg=green' \
+  'function' 'fg=cyan'
 #
 # Set syntax pattern styles.
 zstyle ':prezto:module:syntax-highlighting' pattern \
@@ -218,7 +222,7 @@ zstyle ':prezto:module:terminal:multiplexer-title' format '%s'
 # zstyle ':prezto:module:tmux:auto-start' remote 'yes'
 
 # Integrate with iTerm2.
-zstyle ':prezto:module:tmux:iterm' integrate 'yes'
+# zstyle ':prezto:module:tmux:iterm' integrate 'yes'
 
 # Set the default session name:
 # zstyle ':prezto:module:tmux:session' name 'YOUR DEFAULT SESSION NAME'

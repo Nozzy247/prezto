@@ -9,3 +9,39 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+[[ -r "$HOME"/.config/shell_tokens ]] && source "$HOME"/.config/shell_tokens
+
+export HOMEBREW_NO_ANALYTICS=1
+
+#Node
+export NVM_DIR="$HOME/.nvm"
+
+# PYTHON configuration
+# per python module README
+export PROJECT_HOME="$HOME"/Projects
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--no-site-packages"
+#virtualenvwrapper install instructions
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export PYTHONWARNINGS="ignore"
+
+typeset -gU cdpath fpath mailpath path
+export path=( \
+  /usr/local/opt/openssl@1.1/bin \
+  /usr/local/opt/python/libexec/bin \
+  /usr/{local/,}{bin,sbin} \
+  /{,s}bin \
+  "$HOME"/bin \
+  /usr/local/share/dotnet \
+  $HOME/.dotnet/tools \
+  /opt/X11/bin \
+  /Applications/Server.app/Contents/ServerRoot/usr/bin \
+  /Applications/Server.app/Contents/ServerRoot/usr/sbin \
+)
+
+
+
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
