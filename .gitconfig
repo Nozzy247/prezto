@@ -1,0 +1,9 @@
+[diff]
+tool = araxis
+
+[merge]
+tool = araxis
+
+[alias]
+ad = difftool --tool=araxis --dir-diff
+ads = difftool --tool=araxis --dir-diff --staged

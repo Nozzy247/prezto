@@ -4,3 +4,8 @@ modules/*/cache.zsh
 contrib
 *.sublime-workspace
 *.sublime-project
+*.private
+log*
+lock*
+*corral*
+*.pony
